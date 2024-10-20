@@ -39,7 +39,7 @@
 - **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
 - **`Name`**: VARCHAR(200) NOTNULL - Наименование продукта
 - **`Description`**: TEXT NOTNULL - Описание продукта
-- **`Price`**: INTEGER  NOTNULL - Цена продукта
+- **`Price`**: REAL NOTNULL - Цена продукта
 - **`Quantity`**: INTEGER  NOTNULL - Количество оставшихся экземпляров у продавца
 - **`SellerId`**: UUID REFERENCES Sellers(Id) ON DELETE CASCADE - Внешний ключ, соответствующий сущности продавца товара
 ## 7. Таблица **`Categories`** 
