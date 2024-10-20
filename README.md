@@ -61,3 +61,10 @@
 - **`ProductId`**: UUID REFERENCES PRODUCT(Id) - Внешний ключ, указывающий на ссущность продукта
 - **`CustomerId`**: UUID REFERENCES CUSTOMER(Id) - Внешний ключ, указывающий на сущность покупателя, заказавшего
 - **`OpenAt`**: TIMESTAMP WITH TIME ZONE NOTNULL - Время оформления заказа
+## 11. Таблица **`ProductReviews`** 
+- **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
+- **`Raiting`**: INTEGER NOTNULL - Оценка
+- **`ProductId`**: UUID REFERENCES PRODUCT(Id) - Внешний ключ, указывающий на ссущность продукта
+- **`CustomerId`**: UUID REFERENCES CUSTOMER(Id) - Внешний ключ, указывающий на сущность покупателя, заказавшего
+- **`CreatedAt`**: TIMESTAMP WITH TIME ZONE NOTNULL - Время создания отзыва
+- **`Comment`**: text - Отзыв
