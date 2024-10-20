@@ -9,7 +9,25 @@
 - Статистика продаж для продавца
 - Интеграция платежной системы
 ## Схема сущностей базы данных
-![mdisubd drawio](https://github.com/user-attachments/assets/9b16e131-0ec8-47b9-a269-b891d93c8765)
-![aboba](https://github.com/user-attachments/assets/0941da4c-7c9e-42c7-827f-0690471efc25)
+![asas](https://github.com/user-attachments/assets/ec5b32ad-e9b6-49bc-b3e2-bc3b26570be0)
 
-## 1. Таблица **`Гыук`** 
+## 1. Таблица **`Users`** 
+- **`Id`**: uuid Primary key - Уникальный идентефикатор
+## 2. Таблица **`Customers`** 
+- **`Id`**: uuid Primary key - Уникальный идентефикатор
+## 3. Таблица **`Admins`** 
+- **`Id`**: uuid Primary key - Уникальный идентефикатор
+## 4. Таблица **`Sellers`** 
+- **`Id`**: uuid Primary key - Уникальный идентефикатор
+## 5. Таблица **`RefreshTokens`** 
+- **`Id`**: uuid Primary key - Уникальный идентефикатор
+## 6. Таблица **`Products`** 
+- **`Id`**: uuid Primary key - Уникальный идентефикатор
+## 7. Таблица **`Categories`** 
+- **`Id`**: uuid Primary key - Уникальный идентефикатор
+## 8. Таблица **`ProductMedias`** 
+- **`Id`**: uuid Primary key - Уникальный идентефикатор
+## 9. Таблица **`CartItems`** 
+- **`Id`**: uuid Primary key - Уникальный идентефикатор
+## 10. Таблица **`Orders`** 
+- **`Id`**: uuid Primary key - Уникальный идентефикатор
