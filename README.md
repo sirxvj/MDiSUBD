@@ -61,6 +61,7 @@
 - **`ProductId`**: UUID REFERENCES PRODUCT(Id) - Внешний ключ, указывающий на ссущность продукта
 - **`CustomerId`**: UUID REFERENCES CUSTOMER(Id) - Внешний ключ, указывающий на сущность покупателя, заказавшего
 - **`OpenAt`**: TIMESTAMP WITH TIME ZONE NOTNULL - Время оформления заказа
+- **`Status`**: order_status - Статус заказа в виде перечисления
 ## 11. Таблица **`ProductReviews`** 
 - **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
 - **`Raiting`**: INTEGER NOTNULL - Оценка
