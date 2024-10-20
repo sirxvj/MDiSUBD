@@ -12,51 +12,51 @@
 ![asas](https://github.com/user-attachments/assets/ec5b32ad-e9b6-49bc-b3e2-bc3b26570be0)
 
 ## 1. Таблица **`Users`** 
-- **`Id`**: uuid Primary key - Уникальный идентефикатор
-- **`Email`**: VarChar Unique notnull - Адрес электронной почты
-- **`Phone`**: VarChar Unique notnull - Номер телефона
-- **`PasswordHash`**: bytea NotNull - хеш пароля
-- **`FirstName`**: VarChar - Имя пользователя
-- **`LastName`**: VarChar - Фамилия пользователя
+- **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
+- **`Email`**: VARCHAR(50) Unique NOTNULL - Адрес электронной почты
+- **`Phone`**: VARCHAR(30) Unique NOTNULL - Номер телефона
+- **`PasswordHash`**: BYTEA NOTNULL - хеш пароля
+- **`FirstName`**: VARCHAR(50) NOTNULL - Имя пользователя
+- **`LastName`**: VARCHAR(50) NOTNULL - Фамилия пользователя
 ## 2. Таблица **`Customers`** 
-- **`Id`**: uuid Primary key - Уникальный 
-- **`StripeId`**: VarChar - Уникальный идентефикатор в платежной системе
-- **`UserId`**:  Foreign key - Внешний ключ соответствующий сущности пользователя
+- **`Id`**: UUID PRIMARY KEY - Уникальный 
+- **`StripeId`**: VARCHAR(50) - Уникальный идентефикатор в платежной системе
+- **`UserId`**: UUID REFERENCES Users(Id) ON DELETE CASCADE - Внешний ключ соответствующий сущности пользователя
 ## 3. Таблица **`Admins`** 
-- **`Id`**: uuid Primary key - Уникальный идентефикатор
-- **`IsSuper`**: bool - Флаг указывающий на привелегированные возможности администратора
-- **`UserId`**:  Foreign key - Внешний ключ соответствующий сущности пользователя
+- **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
+- **`IsSuper`**: BOOLEAN DEFAULT FALSE NOTNULL - Флаг указывающий на привелегированные возможности администратора
+- **`UserId`**: UUID REFERENCES Users(Id) ON DELETE CASCADE - Внешний ключ соответствующий сущности пользователя
 ## 4. Таблица **`Sellers`** 
-- **`Id`**: uuid Primary key - Уникальный идентефикатор
-- **`ShopName`**:  VarChar - Имя продавца, показываемое покупателю
-- **`UserId`**:  Foreign key - Внешний ключ соответствующий сущности пользователя
+- **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
+- **`ShopName`**: VARCHAR(100) NOTNULL - Имя продавца, показываемое покупателю
+- **`UserId`**: UUID REFERENCES Users(Id) ON DELETE CASCADE - Внешний ключ соответствующий сущности пользователя
 ## 5. Таблица **`RefreshTokens`** 
-- **`Id`**: uuid Primary key - Уникальный идентефикатор
-- **`Token`**: text - Значение токена
-- **`ExpiresAt`**: timestamp - Время до которого токен валиден
-- **`UserId`**:  Foreign key - Внешний ключ соответствующий сущности пользователя
+- **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
+- **`Token`**: TEXT NOTNULL - Значение токена
+- **`ExpiresAt`**: TIMESTAMP WITH TIME ZONE NOTNULL - Время до которого токен валиден
+- **`UserId`**: UUID REFERENCES Users(Id) ON DELETE CASCADE - Внешний ключ соответствующий сущности пользователя
 ## 6. Таблица **`Products`** 
-- **`Id`**: uuid Primary key - Уникальный идентефикатор
-- **`Name`**: VarChar - Наименование продукта
-- **`Description`**: Text - Описание продукта
-- **`Price`**: integer - Цена продукта
-- **`Quantity`**: integer - Количество оставшихся экземпляров у продавца
-- **`SellerId`**: uuid Foreign key - Внешний ключ, соответствующий сущности продавца товара
+- **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
+- **`Name`**: VARCHAR(200) NOTNULL - Наименование продукта
+- **`Description`**: TEXT NOTNULL - Описание продукта
+- **`Price`**: INTEGER  NOTNULL - Цена продукта
+- **`Quantity`**: INTEGER  NOTNULL - Количество оставшихся экземпляров у продавца
+- **`SellerId`**: UUID REFERENCES Sellers(Id) ON DELETE CASCADE - Внешний ключ, соответствующий сущности продавца товара
 ## 7. Таблица **`Categories`** 
-- **`Id`**: uuid Primary key - Уникальный идентефикатор
-- **`Name`**: uuid Primary key - Уникальный идентефикатор
-- **`ParentCategoryId`**: uuid Foreign key - Внешний ключ, соответствующий сущности родительской категории
+- **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
+- **`Name`**: VARCHAR(100) NOTNULL - Уникальный идентефикатор
+- **`ParentCategoryId`**: UUID REFERENCES CATEGORIES(Id) ON DELETE CASCADE - Внешний ключ, соответствующий сущности родительской категории
 ## 8. Таблица **`ProductMedias`** 
-- **`Id`**: uuid Primary key - Уникальный идентефикатор
-- **`ProductId`**: uuid Foreign key - Внешний ключ, соответствующий сущности продукта
-- **`BlobId`**: VarChar - Строка идентефицирующая изображение в облачном хранилище
+- **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
+- **`ProductId`**: UUID REFERENCES PRODUCT(Id) ON DELETE CASCADE - Внешний ключ, соответствующий сущности продукта
+- **`BlobId`**: VARCHAR(50) NOTNULL - Строка идентефицирующая изображение в облачном хранилище
 ## 9. Таблица **`CartItems`** 
-- **`Id`**: uuid Primary key - Уникальный идентефикатор
-- **`Quantity`**: integer - Количество добавленных в корзину товаров
-- **`ProductId`**: uuid Foreign key - Внешний ключ, указывающий на ссущность продукта
-- **`CustomerId`**: uuid Foreign key - Внешний ключ, указывающий на сущность покупателя, добавившего продукт в корзину
+- **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
+- **`Quantity`**: INTEGER NOTNULL - Количество добавленных в корзину товаров
+- **`ProductId`**: UUID REFERENCES PRODUCT(Id) ON DELETE CASCADE - Внешний ключ, указывающий на ссущность продукта
+- **`CustomerId`**: UUID REFERENCES CUSTOMER(Id) ON DELETE CASCADE - Внешний ключ, указывающий на сущность покупателя, добавившего продукт в корзину
 ## 10. Таблица **`Orders`** 
-- **`Id`**: uuid Primary key - Уникальный идентефикатор
-- **`CartItemId`**: uuid Foreign key - Внешний ключ, казывающий на сущность добавленного в корзину товара
-- **`Status`**: Enum - Статус заказа в виде перечисления
-- **`OpenAt`**: timestamp - Время оформления заказа
+- **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
+- **`CartItemId`**: UUID UUID REFERENCES CARTITEMS(Id) ON DELETE CASCADE - Внешний ключ, казывающий на сущность добавленного в корзину товара
+- **`Status`**: STATUS NOTNULL - Статус заказа в виде перечисления (Enum) 
+- **`OpenAt`**: TIMESTAMP WITH TIME ZONE NOTNULL - Время оформления заказа
