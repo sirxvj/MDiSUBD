@@ -9,7 +9,7 @@
 - Статистика продаж для продавца
 - Интеграция платежной системы
 ## Схема сущностей базы данных
-![asas](https://github.com/user-attachments/assets/ec5b32ad-e9b6-49bc-b3e2-bc3b26570be0)
+![fixed](https://github.com/user-attachments/assets/d203549c-2eff-4e8b-b0dc-b46ac7f04b93)
 
 ## 1. Таблица **`Users`** 
 - **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
@@ -53,10 +53,11 @@
 ## 9. Таблица **`CartItems`** 
 - **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
 - **`Quantity`**: INTEGER NOTNULL - Количество добавленных в корзину товаров
-- **`ProductId`**: UUID REFERENCES PRODUCT(Id) ON DELETE CASCADE - Внешний ключ, указывающий на ссущность продукта
-- **`CustomerId`**: UUID REFERENCES CUSTOMER(Id) ON DELETE CASCADE - Внешний ключ, указывающий на сущность покупателя, добавившего продукт в корзину
+- **`ProductId`**: UUID REFERENCES PRODUCT(Id) - Внешний ключ, указывающий на ссущность продукта
+- **`CustomerId`**: UUID REFERENCES CUSTOMER(Id) - Внешний ключ, указывающий на сущность покупателя, добавившего продукт в корзину
 ## 10. Таблица **`Orders`** 
 - **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
-- **`CartItemId`**: UUID UUID REFERENCES CARTITEMS(Id) ON DELETE CASCADE - Внешний ключ, казывающий на сущность добавленного в корзину товара
-- **`Status`**: STATUS NOTNULL - Статус заказа в виде перечисления (Enum) 
+- **`Quantity`**: INTEGER NOTNULL - Количество добавленных в корзину товаров
+- **`ProductId`**: UUID REFERENCES PRODUCT(Id) - Внешний ключ, указывающий на ссущность продукта
+- **`CustomerId`**: UUID REFERENCES CUSTOMER(Id) - Внешний ключ, указывающий на сущность покупателя, заказавшего
 - **`OpenAt`**: TIMESTAMP WITH TIME ZONE NOTNULL - Время оформления заказа
