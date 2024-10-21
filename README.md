@@ -13,26 +13,26 @@
 
 ## 1. Таблица **`Users`** 
 - **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
-- **`Email`**: VARCHAR(50) Unique NOTNULL - Адрес электронной почты
-- **`Phone`**: VARCHAR(30) Unique NOTNULL - Номер телефона
-- **`PasswordHash`**: BYTEA NOTNULL - хеш пароля
-- **`FirstName`**: VARCHAR(50) NOTNULL - Имя пользователя
-- **`LastName`**: VARCHAR(50) NOTNULL - Фамилия пользователя
+- **`Email`**: VARCHAR(50) Unique NOT NULL - Адрес электронной почты
+- **`Phone`**: VARCHAR(30) Unique NOT NULL - Номер телефона
+- **`PasswordHash`**: BYTEA NOT NULL - хеш пароля
+- **`FirstName`**: VARCHAR(50) NOT NULL - Имя пользователя
+- **`LastName`**: VARCHAR(50) NOT NULL - Фамилия пользователя
 ## 2. Таблица **`Customers`** 
 - **`Id`**: UUID PRIMARY KEY - Уникальный 
 - **`StripeId`**: VARCHAR(50) - Уникальный идентефикатор в платежной системе
 - **`UserId`**: UUID REFERENCES Users(Id) ON DELETE CASCADE - Внешний ключ соответствующий сущности пользователя
 ## 3. Таблица **`Admins`** 
 - **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
-- **`IsSuper`**: BOOLEAN DEFAULT FALSE NOTNULL - Флаг указывающий на привелегированные возможности администратора
+- **`IsSuper`**: BOOLEAN DEFAULT FALSE NOT NULL - Флаг указывающий на привелегированные возможности администратора
 - **`UserId`**: UUID REFERENCES Users(Id) ON DELETE CASCADE - Внешний ключ соответствующий сущности пользователя
 ## 4. Таблица **`Sellers`** 
 - **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
-- **`ShopName`**: VARCHAR(100) NOTNULL - Имя продавца, показываемое покупателю
+- **`ShopName`**: VARCHAR(100) NOT NULL - Имя продавца, показываемое покупателю
 - **`UserId`**: UUID REFERENCES Users(Id) ON DELETE CASCADE - Внешний ключ соответствующий сущности пользователя
 ## 5. Таблица **`RefreshTokens`** 
 - **`Id`**: UUID PRIMARY KEY - Уникальный идентефикатор
-- **`Token`**: TEXT NOTNULL - Значение токена
+- **`Token`**: TEXT NOT NULL - Значение токена
 - **`ExpiresAt`**: TIMESTAMP WITH TIME ZONE NOTNULL - Время до которого токен валиден
 - **`UserId`**: UUID REFERENCES Users(Id) ON DELETE CASCADE - Внешний ключ соответствующий сущности пользователя
 ## 6. Таблица **`Products`** 
